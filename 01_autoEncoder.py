@@ -13,6 +13,8 @@ import cv2 as cv
 import os
 import matplotlib.pyplot as plt 
 
+TEST_SIZE = 1000
+
 class AUTOENCODER(object):
     def __init__(self, train_clear_path, train_noise_path):
         '''
@@ -101,7 +103,7 @@ class AUTOENCODER(object):
         self.noises_lists = glob('%s/*' % (self.noises_path))
 
         # random index of picture
-        index = np.random.randint(0, len(self.clears_lists)-1000, batch_size)
+        index = np.random.randint(0, len(self.clears_lists)-TEST_SIZE, batch_size)
 
         # save the batch_imgs
         clear_imgs = []
@@ -128,7 +130,7 @@ class AUTOENCODER(object):
         :param batch_size: the number of show imgs
         :return: noise imgs , clear imgs wanted to show
         '''
-        index = np.random.randint(len(self.clears_lists)-1000, len(self.clears_lists), batch_size)
+        index = np.random.randint(len(self.clears_lists)-TEST_SIZE, len(self.clears_lists), batch_size)
         clear_imgs = []
         noise_imgs = []
         for idx in index:
